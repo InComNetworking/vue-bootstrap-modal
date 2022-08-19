@@ -1,6 +1,6 @@
 {
   "name": "@gormartsen/vue-bootstrap-modal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 3 bootstrap 5.1 modal component",
   "main": "index.js",
   "scripts": {

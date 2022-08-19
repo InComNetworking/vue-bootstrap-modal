@@ -45,16 +45,6 @@
     @click="cancelEvent"
   ></div>
 </template>
-<script setup>
-defineProps({
-  title: {
-    required: false,
-  },
-  actions: {
-    required: false,
-  },
-});
-</script>
 <script>
 export default {
   data() {
@@ -63,6 +53,7 @@ export default {
     };
   },
   emits: ["cancelModal"],
+  props: ["title", "actions"],
   watch: {},
   computed: {
     backdropClasses: function () {
