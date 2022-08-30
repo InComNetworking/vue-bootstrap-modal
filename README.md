@@ -6,18 +6,6 @@ Vue 3 bootstrap 5.1 modal component
 :show-title - true/false - show modal header
 :actions - array of buttons:
 ```
-:title - header title
-events:
-@hideBsModal - received hide()
-@hiddenBsModal - modal hidden
-@showBsModal - received show
-@shownBsModal - modal shown
-
-methods:
-$refs['modal'].show() - show modal
-$refs['modal'].hide() - hide modal
-where $refs['modal'] is related to `ref="modal"` on <ModalView /> element
-
 actionSettings: [
   {
     title: "Cancel",
@@ -42,6 +30,19 @@ actionSettings: [
   },
 ],
 ```
+:title - header title
+events:
+@hideBsModal - received hide()
+@hiddenBsModal - modal hidden
+@showBsModal - received show
+@shownBsModal - modal shown
+
+methods:
+$refs['modal'].show() - show modal
+$refs['modal'].hide() - hide modal
+where $refs['modal'] is related to `ref="modal"` on <ModalView /> element
+
+
 
 Regular scrollable:
 
