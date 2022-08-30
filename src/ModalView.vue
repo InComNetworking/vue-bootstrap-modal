@@ -13,7 +13,6 @@
     <div class="modal-dialog" :class="$attrs.class">
       <div class="modal-content">
         <div class="modal-header" v-if="showTitle">
-          {{showTitle}}
           <slot name="header"></slot>
           <h5 v-if="title" class="modal-title">
             {{ title }}

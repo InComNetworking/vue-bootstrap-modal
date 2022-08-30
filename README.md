@@ -4,6 +4,11 @@ Vue 3 bootstrap 5.1 modal component
 # Usage Example:
 
 :show-title - true/false - show modal header
+
+:title - header title
+
+:show-on-mount - true/false - show modal on component mount
+
 :actions - array of buttons:
 ```
 actionSettings: [
@@ -30,16 +35,20 @@ actionSettings: [
   },
 ],
 ```
-:title - header title
+
 events:
+```
 @hideBsModal - received hide()
 @hiddenBsModal - modal hidden
 @showBsModal - received show
 @shownBsModal - modal shown
+```
 
 methods:
+```
 $refs['modal'].show() - show modal
 $refs['modal'].hide() - hide modal
+```
 where $refs['modal'] is related to `ref="modal"` on <ModalView /> element
 
 
