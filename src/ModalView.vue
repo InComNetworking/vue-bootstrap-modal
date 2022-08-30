@@ -88,7 +88,7 @@ export default {
         self.customStyle = "display: none;";
         self.$emit("hiddenBsModal");
         self.isBackdrop = false;
-      }, 100);
+      }, 300);
     },
   },
   computed: {
