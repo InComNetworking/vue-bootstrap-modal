@@ -1,6 +1,5 @@
 <style lang="scss" scoped></style>
 <template>
-  {{isShow}}
   <div
     class="modal"
     :class="backdropClasses"
