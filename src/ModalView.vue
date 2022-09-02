@@ -13,6 +13,14 @@
     <div class="modal-dialog" :class="$attrs.class">
       <div class="modal-content">
         <div class="modal-header" v-if="showTitle">
+          <button
+            v-if="previous"
+            type="button"
+            class="btn btn-link text-reset btn-reset"
+            data-bs-dismiss="modal"
+            aria-label="Go back"
+            @click="showPrevious"
+          ><i class="fa-solid fa-rotate-left"></i></button>
           <slot name="header"></slot>
           <h5 v-if="title" class="modal-title">
             {{ title }}
@@ -61,6 +69,7 @@ export default {
       myPosition: 0,
       isBackdrop: false,
       classes: ['fade'],
+      previous: false,
     };
   },
   emits: [
@@ -69,7 +78,7 @@ export default {
     "showBsModal",
     "shownBsModal",
   ],
-  props: ["title", "actions","showTitle", "btnClose",  "dataBsBackdrop", "showOnMount"],
+  props: ["title", "actions","showTitle", "btnClose",  "dataBsBackdrop", "showOnMount", "showOnTop"],
   watch: {
     isShow: function (newValue) {
       var self = this;
@@ -103,6 +112,11 @@ export default {
     },
   },
   methods: {
+    showPrevious: function() {
+      this.hide()
+      modalWindows[this.previous].show();
+      this.previous = false;
+    },
     clickHide: function (e) {
       if(this.dataBsBackdrop && this.dataBsBackdrop == "static") {
         this.classes.push("modal-static")
@@ -128,9 +142,12 @@ export default {
         return;
       }
       // Hide any other open Modal
-      for(var i in modalWindows) {
-        if(modalWindows[i].isShow !== true) {
-          modalWindows[i].hide();
+      if(this.showOnTop !== true) {
+        for(var i in modalWindows) {
+          if(modalWindows[i].isShow === true) {
+            this.previous = i; 
+            modalWindows[i].hide();
+          }
         }
       }
       var self = this;
