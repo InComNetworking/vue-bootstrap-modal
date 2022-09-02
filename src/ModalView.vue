@@ -158,7 +158,9 @@ export default {
     },
     processClick: function(callback) {
       this.hide();
-      callback();
+      if(callback) {
+        callback();
+      }
     }
   },
   unmounted: function() {
