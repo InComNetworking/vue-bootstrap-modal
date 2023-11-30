@@ -20,7 +20,7 @@
             data-bs-dismiss="modal"
             aria-label="Go back"
             @click="showPrevious"
-          ><i class="fa-solid fa-rotate-left"></i></button>
+          ><i class="fa-solid fa-chevron-left"></i></button>
           <slot name="header"></slot>
           <h5 v-if="title" class="modal-title">
             {{ title }}
