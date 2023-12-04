@@ -157,9 +157,14 @@ export default {
       }, 100);
     },
     processClick: function(callback) {
-      this.hide();
+      
       if(callback) {
-        callback();
+        var res = callback(this);
+        if(res !== true) {
+          this.hide(); 
+        }
+      } else {
+        this.hide();
       }
     }
   },
