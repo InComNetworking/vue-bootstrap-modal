@@ -1,11 +1,11 @@
-import { openBlock as l, createElementBlock as n, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as d, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
+import { openBlock as l, createElementBlock as a, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as r, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
 const p = (t, s) => {
   const o = t.__vccOpts || t;
-  for (const [u, a] of s)
-    o[u] = a;
+  for (const [u, n] of s)
+    o[u] = n;
   return o;
 };
-var r = [];
+var d = [];
 const b = {
   data() {
     return {
@@ -49,7 +49,7 @@ const b = {
   },
   methods: {
     showPrevious: function() {
-      this.hide(), r[this.previous].show(), this.previous = !1;
+      this.hide(), d[this.previous].show(), this.previous = !1;
     },
     clickHide: function(t) {
       if (this.dataBsBackdrop && this.dataBsBackdrop == "static") {
@@ -68,8 +68,8 @@ const b = {
     show: function() {
       if (!this.isShow) {
         if (this.showOnTop !== !0)
-          for (var t in r)
-            r[t].isShow === !0 && (this.previous = t, r[t].hide());
+          for (var t in d)
+            d[t].isShow === !0 && (this.previous = t, d[t].hide());
         var s = this;
         setTimeout(function() {
           s.isShow = !0, s.$emit("showBsModal");
@@ -85,10 +85,10 @@ const b = {
     }
   },
   unmounted: function() {
-    r.splice(this.myPosition, 1);
+    d.splice(this.myPosition, 1);
   },
   mounted: function() {
-    this.myPosition = r.push(this) - 1, this.showOnMount && this.show();
+    this.myPosition = d.push(this) - 1, this.showOnMount && this.show();
   }
 }, B = ["aria-hidden", "aria-modal", "role"], S = { class: "modal-content" }, _ = {
   key: 0,
@@ -102,14 +102,14 @@ const b = {
   key: 1,
   class: "modal-footer"
 }, H = ["onClick"];
-function O(t, s, o, u, a, e) {
-  return l(), n(f, null, [
+function O(t, s, o, u, n, e) {
+  return l(), a(f, null, [
     c("div", {
       class: h(["modal", e.backdropClasses]),
-      "aria-hidden": !a.isShow,
-      "aria-modal": a.isShow,
+      "aria-hidden": !n.isShow,
+      "aria-modal": n.isShow,
       role: e.getRole,
-      style: v(a.customStyle),
+      style: v(n.customStyle),
       onClick: s[2] || (s[2] = (...i) => e.clickHide && e.clickHide(...i)),
       ref: "root"
     }, [
@@ -117,18 +117,18 @@ function O(t, s, o, u, a, e) {
         class: h(["modal-dialog", t.$attrs.class])
       }, [
         c("div", S, [
-          o.showTitle ? (l(), n("div", _, [
-            a.previous ? (l(), n("button", {
+          o.showTitle ? (l(), a("div", _, [
+            n.previous ? (l(), a("button", {
               key: 0,
               type: "button",
               class: "btn btn-link text-reset btn-reset",
               "data-bs-dismiss": "modal",
               "aria-label": "Go back",
               onClick: s[0] || (s[0] = (...i) => e.showPrevious && e.showPrevious(...i))
-            }, M)) : d("", !0),
+            }, M)) : r("", !0),
             m(t.$slots, "header"),
-            o.title ? (l(), n("h5", g, k(o.title), 1)) : d("", !0),
-            o.btnClose ? d("", !0) : (l(), n("button", {
+            o.title ? (l(), a("h5", g, k(o.title), 1)) : r("", !0),
+            o.btnClose ? r("", !0) : (l(), a("button", {
               key: 2,
               type: "button",
               class: "btn-close",
@@ -136,33 +136,29 @@ function O(t, s, o, u, a, e) {
               "aria-label": "Close",
               onClick: s[1] || (s[1] = (...i) => e.hide && e.hide(...i))
             }))
-          ])) : d("", !0),
+          ])) : r("", !0),
           c("div", T, [
             m(t.$slots, "default")
           ]),
-          o.actions ? (l(), n("div", P, [
-            (l(!0), n(f, null, y(o.actions, (i, w) => (l(), n("button", {
+          o.actions ? (l(), a("div", P, [
+            (l(!0), a(f, null, y(o.actions, (i, w) => (l(), a("button", {
               type: "button",
               class: h(["btn", i.class]),
               key: w,
-              onClick: (x) => e.processClick(i.click)
+              onClick: (V) => e.processClick(i.click)
             }, k(i.title), 11, H))), 128))
-          ])) : d("", !0)
+          ])) : r("", !0)
         ])
       ], 2)
     ], 14, B),
-    a.isBackdrop ? (l(), n("div", {
+    n.isBackdrop ? (l(), a("div", {
       key: 0,
       class: h(["modal-backdrop", e.backdropClasses]),
       onClick: s[3] || (s[3] = (...i) => e.clickHide && e.clickHide(...i))
-    }, null, 2)) : d("", !0)
+    }, null, 2)) : r("", !0)
   ], 64);
 }
-const V = /* @__PURE__ */ p(b, [["render", O]]), E = {
-  install: (t) => {
-    t.component("ModalView", V);
-  }
-};
+const E = /* @__PURE__ */ p(b, [["render", O]]);
 export {
   E as default
 };
