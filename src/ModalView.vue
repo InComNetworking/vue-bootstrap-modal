@@ -45,7 +45,7 @@
             :key="index"
             :class="btn.class"
             @click="processClick(btn.click)"
-            :disabled="btn.disabled"
+            :disabled="btn.disabled == true"
           >
             {{ btn.title }}
           </button>

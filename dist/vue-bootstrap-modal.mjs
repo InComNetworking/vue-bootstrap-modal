@@ -146,7 +146,7 @@ function O(t, s, o, u, n, e) {
               class: h(["btn", i.class]),
               key: w,
               onClick: (V) => e.processClick(i.click),
-              disabled: i.disabled
+              disabled: i.disabled == !0
             }, k(i.title), 11, H))), 128))
           ])) : d("", !0)
         ])
