@@ -45,7 +45,7 @@
             :key="index"
             :class="btn.class"
             @click="processClick(btn.click)"
-            v-bind="{disabled: btn.disabled}"
+            :disabled="btn.disabled"
           >
             {{ btn.title }}
           </button>

@@ -1,4 +1,4 @@
-import { openBlock as l, createElementBlock as a, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as d, renderSlot as m, toDisplayString as k, renderList as y, mergeProps as p } from "vue";
+import { openBlock as l, createElementBlock as a, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as d, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
 const b = (t, s) => {
   const o = t.__vccOpts || t;
   for (const [u, n] of s)
@@ -6,7 +6,7 @@ const b = (t, s) => {
   return o;
 };
 var r = [];
-const B = {
+const p = {
   data() {
     return {
       isShow: !1,
@@ -90,19 +90,19 @@ const B = {
   mounted: function() {
     this.myPosition = r.push(this) - 1, this.showOnMount && this.show();
   }
-}, S = ["aria-hidden", "aria-modal", "role"], _ = { class: "modal-content" }, C = {
+}, B = ["aria-hidden", "aria-modal", "role"], S = { class: "modal-content" }, _ = {
   key: 0,
   class: "modal-header"
-}, M = /* @__PURE__ */ c("i", { class: "fa-solid fa-chevron-left" }, null, -1), g = [
-  M
-], T = {
+}, C = /* @__PURE__ */ c("i", { class: "fa-solid fa-chevron-left" }, null, -1), M = [
+  C
+], g = {
   key: 1,
   class: "modal-title"
-}, P = { class: "modal-body" }, H = {
+}, T = { class: "modal-body" }, P = {
   key: 1,
   class: "modal-footer"
-}, O = ["onClick"];
-function V(t, s, o, u, n, e) {
+}, H = ["onClick", "disabled"];
+function O(t, s, o, u, n, e) {
   return l(), a(f, null, [
     c("div", {
       class: h(["modal", e.backdropClasses]),
@@ -116,8 +116,8 @@ function V(t, s, o, u, n, e) {
       c("div", {
         class: h(["modal-dialog", t.$attrs.class])
       }, [
-        c("div", _, [
-          o.showTitle ? (l(), a("div", C, [
+        c("div", S, [
+          o.showTitle ? (l(), a("div", _, [
             n.previous ? (l(), a("button", {
               key: 0,
               type: "button",
@@ -125,9 +125,9 @@ function V(t, s, o, u, n, e) {
               "data-bs-dismiss": "modal",
               "aria-label": "Go back",
               onClick: s[0] || (s[0] = (...i) => e.showPrevious && e.showPrevious(...i))
-            }, g)) : d("", !0),
+            }, M)) : d("", !0),
             m(t.$slots, "header"),
-            o.title ? (l(), a("h5", T, k(o.title), 1)) : d("", !0),
+            o.title ? (l(), a("h5", g, k(o.title), 1)) : d("", !0),
             o.btnClose ? d("", !0) : (l(), a("button", {
               key: 2,
               type: "button",
@@ -137,20 +137,21 @@ function V(t, s, o, u, n, e) {
               onClick: s[1] || (s[1] = (...i) => e.hide && e.hide(...i))
             }))
           ])) : d("", !0),
-          c("div", P, [
+          c("div", T, [
             m(t.$slots, "default")
           ]),
-          o.actions ? (l(), a("div", H, [
-            (l(!0), a(f, null, y(o.actions, (i, w) => (l(), a("button", p({
+          o.actions ? (l(), a("div", P, [
+            (l(!0), a(f, null, y(o.actions, (i, w) => (l(), a("button", {
               type: "button",
-              class: ["btn", i.class],
+              class: h(["btn", i.class]),
               key: w,
-              onClick: (z) => e.processClick(i.click)
-            }, { disabled: i.disabled }), k(i.title), 17, O))), 128))
+              onClick: (V) => e.processClick(i.click),
+              disabled: i.disabled
+            }, k(i.title), 11, H))), 128))
           ])) : d("", !0)
         ])
       ], 2)
-    ], 14, S),
+    ], 14, B),
     n.isBackdrop ? (l(), a("div", {
       key: 0,
       class: h(["modal-backdrop", e.backdropClasses]),
@@ -158,7 +159,7 @@ function V(t, s, o, u, n, e) {
     }, null, 2)) : d("", !0)
   ], 64);
 }
-const N = /* @__PURE__ */ b(B, [["render", V]]);
+const E = /* @__PURE__ */ b(p, [["render", O]]);
 export {
-  N as default
+  E as default
 };
