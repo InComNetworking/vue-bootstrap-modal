@@ -1,5 +1,5 @@
-import { openBlock as l, createElementBlock as n, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as w, createCommentVNode as r, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
-const p = (t, s) => {
+import { openBlock as l, createElementBlock as n, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as w, createCommentVNode as r, renderSlot as m, toDisplayString as k, renderList as p } from "vue";
+const y = (t, s) => {
   const o = t.__vccOpts || t;
   for (const [u, a] of s)
     o[u] = a;
@@ -135,14 +135,14 @@ function H(t, s, o, u, a, e) {
               class: "btn-close",
               "data-bs-dismiss": "modal",
               "aria-label": "Close",
-              onClick: s[1] || (s[1] = (...i) => e.hide && e.hide(...i))
+              onClick: s[1] || (s[1] = (i) => e.hide(!1))
             }))
           ])) : r("", !0),
           c("div", T, [
             m(t.$slots, "default")
           ]),
           o.actions ? (l(), n("div", P, [
-            (l(!0), n(f, null, y(o.actions, (i, v) => (l(), n("button", {
+            (l(!0), n(f, null, p(o.actions, (i, v) => (l(), n("button", {
               type: "button",
               class: h(["btn", i.class]),
               key: v,
@@ -160,7 +160,7 @@ function H(t, s, o, u, a, e) {
     }, null, 2)) : r("", !0)
   ], 64);
 }
-const z = /* @__PURE__ */ p(b, [["render", H]]);
+const z = /* @__PURE__ */ y(b, [["render", H]]);
 export {
   z as default
 };
