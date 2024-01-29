@@ -66,6 +66,7 @@ export default {
   data() {
     return {
       isShow: false,
+      noEvent: false,
       customStyle: 'display: none',
       myPosition: 0,
       isBackdrop: false,
@@ -96,6 +97,9 @@ export default {
       this.classes.pop();
       setTimeout(function () {
         self.customStyle = "display: none;";
+        if(self.noEvent) {
+          return;
+        }
         self.$emit("hiddenBsModal");
         self.isBackdrop = false;
       }, 300);
@@ -128,14 +132,20 @@ export default {
         return;
       }
       if (this.$refs["root"] && this.$refs["root"] == e.target) {
-        this.hide();
+        this.hide(false);
       }
     },
-    hide: function () {
+    hide: function (noEvent) {
+      if(noEvent !== undefined) {
+        this.noEvent = true
+      }
       if(!this.isShow) {
         return
       }
       this.isShow = false;
+      if(this.noEvent) {
+        return;
+      }
       this.$emit("hideBsModal");
     },
     show: function () {
@@ -147,7 +157,7 @@ export default {
         for(var i in modalWindows) {
           if(modalWindows[i].isShow === true) {
             this.previous = i; 
-            modalWindows[i].hide();
+            modalWindows[i].hide(true);
           }
         }
       }

@@ -1,8 +1,8 @@
-import { openBlock as l, createElementBlock as a, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as d, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
+import { openBlock as l, createElementBlock as n, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as d, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
 const b = (t, s) => {
   const o = t.__vccOpts || t;
-  for (const [u, n] of s)
-    o[u] = n;
+  for (const [u, a] of s)
+    o[u] = a;
   return o;
 };
 var r = [];
@@ -10,6 +10,7 @@ const p = {
   data() {
     return {
       isShow: !1,
+      noEvent: !1,
       customStyle: "display: none",
       myPosition: 0,
       isBackdrop: !1,
@@ -34,7 +35,7 @@ const p = {
         return;
       }
       this.classes.pop(), setTimeout(function() {
-        s.customStyle = "display: none;", s.$emit("hiddenBsModal"), s.isBackdrop = !1;
+        s.customStyle = "display: none;", !s.noEvent && (s.$emit("hiddenBsModal"), s.isBackdrop = !1);
       }, 300);
     }
   },
@@ -60,16 +61,16 @@ const p = {
         }, 300);
         return;
       }
-      this.$refs.root && this.$refs.root == t.target && this.hide();
+      this.$refs.root && this.$refs.root == t.target && this.hide(!1);
     },
-    hide: function() {
-      !this.isShow || (this.isShow = !1, this.$emit("hideBsModal"));
+    hide: function(t) {
+      t !== void 0 && (this.noEvent = !0), this.isShow && (this.isShow = !1, !this.noEvent && this.$emit("hideBsModal"));
     },
     show: function() {
       if (!this.isShow) {
         if (this.showOnTop !== !0)
           for (var t in r)
-            r[t].isShow === !0 && (this.previous = t, r[t].hide());
+            r[t].isShow === !0 && (this.previous = t, r[t].hide(!0));
         var s = this;
         setTimeout(function() {
           s.isShow = !0, s.$emit("showBsModal");
@@ -98,18 +99,18 @@ const p = {
 ], g = {
   key: 1,
   class: "modal-title"
-}, T = { class: "modal-body" }, P = {
+}, T = { class: "modal-body" }, E = {
   key: 1,
   class: "modal-footer"
-}, H = ["onClick", "disabled"];
-function O(t, s, o, u, n, e) {
-  return l(), a(f, null, [
+}, P = ["onClick", "disabled"];
+function H(t, s, o, u, a, e) {
+  return l(), n(f, null, [
     c("div", {
       class: h(["modal", e.backdropClasses]),
-      "aria-hidden": !n.isShow,
-      "aria-modal": n.isShow,
+      "aria-hidden": !a.isShow,
+      "aria-modal": a.isShow,
       role: e.getRole,
-      style: v(n.customStyle),
+      style: v(a.customStyle),
       onClick: s[2] || (s[2] = (...i) => e.clickHide && e.clickHide(...i)),
       ref: "root"
     }, [
@@ -117,8 +118,8 @@ function O(t, s, o, u, n, e) {
         class: h(["modal-dialog", t.$attrs.class])
       }, [
         c("div", S, [
-          o.showTitle ? (l(), a("div", _, [
-            n.previous ? (l(), a("button", {
+          o.showTitle ? (l(), n("div", _, [
+            a.previous ? (l(), n("button", {
               key: 0,
               type: "button",
               class: "btn btn-link text-reset btn-reset",
@@ -127,8 +128,8 @@ function O(t, s, o, u, n, e) {
               onClick: s[0] || (s[0] = (...i) => e.showPrevious && e.showPrevious(...i))
             }, M)) : d("", !0),
             m(t.$slots, "header"),
-            o.title ? (l(), a("h5", g, k(o.title), 1)) : d("", !0),
-            o.btnClose ? d("", !0) : (l(), a("button", {
+            o.title ? (l(), n("h5", g, k(o.title), 1)) : d("", !0),
+            o.btnClose ? d("", !0) : (l(), n("button", {
               key: 2,
               type: "button",
               class: "btn-close",
@@ -140,26 +141,26 @@ function O(t, s, o, u, n, e) {
           c("div", T, [
             m(t.$slots, "default")
           ]),
-          o.actions ? (l(), a("div", P, [
-            (l(!0), a(f, null, y(o.actions, (i, w) => (l(), a("button", {
+          o.actions ? (l(), n("div", E, [
+            (l(!0), n(f, null, y(o.actions, (i, w) => (l(), n("button", {
               type: "button",
               class: h(["btn", i.class]),
               key: w,
-              onClick: (V) => e.processClick(i.click),
+              onClick: (O) => e.processClick(i.click),
               disabled: i.disabled == !0
-            }, k(i.title), 11, H))), 128))
+            }, k(i.title), 11, P))), 128))
           ])) : d("", !0)
         ])
       ], 2)
     ], 14, B),
-    n.isBackdrop ? (l(), a("div", {
+    a.isBackdrop ? (l(), n("div", {
       key: 0,
       class: h(["modal-backdrop", e.backdropClasses]),
       onClick: s[3] || (s[3] = (...i) => e.clickHide && e.clickHide(...i))
     }, null, 2)) : d("", !0)
   ], 64);
 }
-const E = /* @__PURE__ */ b(p, [["render", O]]);
+const z = /* @__PURE__ */ b(p, [["render", H]]);
 export {
-  E as default
+  z as default
 };
