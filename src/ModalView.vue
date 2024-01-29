@@ -136,9 +136,8 @@ export default {
       }
     },
     hide: function (noEvent) {
-      if(noEvent !== undefined) {
-        this.noEvent = true
-      }
+      this.noEvent = noEvent
+
       if(!this.isShow) {
         return
       }
