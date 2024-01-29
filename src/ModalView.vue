@@ -133,6 +133,9 @@ export default {
       }
       if (this.$refs["root"] && this.$refs["root"] == e.target) {
         this.hide(false);
+        if(this.previous) {
+          this.showPrevious()
+        }
       }
     },
     hide: function (noEvent) {

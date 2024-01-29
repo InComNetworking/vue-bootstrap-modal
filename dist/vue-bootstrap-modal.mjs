@@ -1,12 +1,12 @@
-import { openBlock as l, createElementBlock as n, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as v, createCommentVNode as r, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
-const b = (t, s) => {
+import { openBlock as l, createElementBlock as n, Fragment as f, createElementVNode as c, normalizeClass as h, normalizeStyle as w, createCommentVNode as r, renderSlot as m, toDisplayString as k, renderList as y } from "vue";
+const p = (t, s) => {
   const o = t.__vccOpts || t;
   for (const [u, a] of s)
     o[u] = a;
   return o;
 };
 var d = [];
-const p = {
+const b = {
   data() {
     return {
       isShow: !1,
@@ -61,7 +61,7 @@ const p = {
         }, 300);
         return;
       }
-      this.$refs.root && this.$refs.root == t.target && this.hide(!1);
+      this.$refs.root && this.$refs.root == t.target && (this.hide(!1), this.previous && this.showPrevious());
     },
     hide: function(t) {
       this.noEvent = t, this.isShow && (this.isShow = !1, !this.noEvent && this.$emit("hideBsModal"));
@@ -99,10 +99,10 @@ const p = {
 ], g = {
   key: 1,
   class: "modal-title"
-}, T = { class: "modal-body" }, E = {
+}, T = { class: "modal-body" }, P = {
   key: 1,
   class: "modal-footer"
-}, P = ["onClick", "disabled"];
+}, E = ["onClick", "disabled"];
 function H(t, s, o, u, a, e) {
   return l(), n(f, null, [
     c("div", {
@@ -110,7 +110,7 @@ function H(t, s, o, u, a, e) {
       "aria-hidden": !a.isShow,
       "aria-modal": a.isShow,
       role: e.getRole,
-      style: v(a.customStyle),
+      style: w(a.customStyle),
       onClick: s[2] || (s[2] = (...i) => e.clickHide && e.clickHide(...i)),
       ref: "root"
     }, [
@@ -141,14 +141,14 @@ function H(t, s, o, u, a, e) {
           c("div", T, [
             m(t.$slots, "default")
           ]),
-          o.actions ? (l(), n("div", E, [
-            (l(!0), n(f, null, y(o.actions, (i, w) => (l(), n("button", {
+          o.actions ? (l(), n("div", P, [
+            (l(!0), n(f, null, y(o.actions, (i, v) => (l(), n("button", {
               type: "button",
               class: h(["btn", i.class]),
-              key: w,
+              key: v,
               onClick: (O) => e.processClick(i.click),
               disabled: i.disabled == !0
-            }, k(i.title), 11, P))), 128))
+            }, k(i.title), 11, E))), 128))
           ])) : r("", !0)
         ])
       ], 2)
@@ -160,7 +160,7 @@ function H(t, s, o, u, a, e) {
     }, null, 2)) : r("", !0)
   ], 64);
 }
-const z = /* @__PURE__ */ b(p, [["render", H]]);
+const z = /* @__PURE__ */ p(b, [["render", H]]);
 export {
   z as default
 };
