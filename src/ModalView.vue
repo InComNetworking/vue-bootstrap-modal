@@ -119,7 +119,9 @@ export default {
   methods: {
     showPrevious: function() {
       this.hide()
-      modalWindows[this.previous].show();
+      if(modalWindows[this.previous]){
+        modalWindows[this.previous].show();
+      }
       this.previous = false;
     },
     clickHide: function (e) {
