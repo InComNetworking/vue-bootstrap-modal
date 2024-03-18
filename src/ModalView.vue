@@ -31,7 +31,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            @click="hide(false)"
+            @click="clickHide"
           ></button>
         </div>
         <div class="modal-body">
