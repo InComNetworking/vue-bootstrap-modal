@@ -31,7 +31,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            @click="clickHide"
+            @click="clickClose"
           ></button>
         </div>
         <div class="modal-body">
@@ -139,6 +139,9 @@ export default {
           this.showPrevious()
         }
       }
+    },
+    clickClose: function(){
+      this.clickHide(this.$refs['root'])
     },
     hide: function (noEvent) {
       this.noEvent = noEvent
