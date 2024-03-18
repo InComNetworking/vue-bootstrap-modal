@@ -141,7 +141,7 @@ export default {
       }
     },
     clickClose: function(){
-      this.clickHide(this.$refs['root'])
+      this.clickHide({ target:this.$refs['root']})
     },
     hide: function (noEvent) {
       this.noEvent = noEvent
