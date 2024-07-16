@@ -125,15 +125,16 @@ export default {
       this.previous = false;
     },
     clickHide: function (e) {
-      if(this.dataBsBackdrop && this.dataBsBackdrop == "static") {
-        this.classes.push("modal-static")
-        var self = this;
-        setTimeout(function () {
-          self.classes.pop()
-        }, 300);
-        return;
-      }
       if (this.$refs["root"] && this.$refs["root"] == e.target) {
+        if(this.dataBsBackdrop && this.dataBsBackdrop == "static") {
+          this.classes.push("modal-static")
+          var self = this;
+          setTimeout(function () {
+            self.classes.pop()
+          }, 300);
+          return;
+        }
+      
         this.hide(false);
         if(this.previous) {
           this.showPrevious()
