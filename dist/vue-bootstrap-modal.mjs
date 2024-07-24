@@ -53,15 +53,20 @@ const b = {
       this.hide(), r[this.previous] && r[this.previous].show(), this.previous = !1;
     },
     clickHide: function(t) {
-      if (this.dataBsBackdrop && this.dataBsBackdrop == "static") {
-        this.classes.push("modal-static");
-        var s = this;
-        setTimeout(function() {
-          s.classes.pop();
-        }, 300);
-        return;
+      if (this.$refs.root && this.$refs.root == t.target) {
+        if (this.dataBsBackdrop && this.dataBsBackdrop == "static") {
+          this.classes.push("modal-static");
+          var s = this;
+          setTimeout(function() {
+            s.classes.pop();
+          }, 300);
+          return;
+        }
+        this.hide(!1), this.previous && this.showPrevious();
       }
-      this.$refs.root && this.$refs.root == t.target && (this.hide(!1), this.previous && this.showPrevious());
+    },
+    clickClose: function() {
+      this.clickHide({ target: this.$refs.root });
     },
     hide: function(t) {
       this.noEvent = t, this.isShow && (this.isShow = !1, !this.noEvent && this.$emit("hideBsModal"));
@@ -91,11 +96,11 @@ const b = {
   mounted: function() {
     this.myPosition = r.push(this) - 1, this.showOnMount && this.show();
   }
-}, B = ["aria-hidden", "aria-modal", "role"], S = { class: "modal-content" }, _ = {
+}, B = ["aria-hidden", "aria-modal", "role"], C = { class: "modal-content" }, S = {
   key: 0,
   class: "modal-header"
-}, C = /* @__PURE__ */ c("i", { class: "fa-solid fa-chevron-left" }, null, -1), M = [
-  C
+}, _ = /* @__PURE__ */ c("i", { class: "fa-solid fa-chevron-left" }, null, -1), M = [
+  _
 ], g = {
   key: 1,
   class: "modal-title"
@@ -117,8 +122,8 @@ function H(t, s, o, u, a, e) {
       c("div", {
         class: h(["modal-dialog", t.$attrs.class])
       }, [
-        c("div", S, [
-          o.showTitle ? (l(), n("div", _, [
+        c("div", C, [
+          o.showTitle ? (l(), n("div", S, [
             a.previous ? (l(), n("button", {
               key: 0,
               type: "button",
@@ -135,7 +140,7 @@ function H(t, s, o, u, a, e) {
               class: "btn-close",
               "data-bs-dismiss": "modal",
               "aria-label": "Close",
-              onClick: s[1] || (s[1] = (i) => e.hide(!1))
+              onClick: s[1] || (s[1] = (...i) => e.clickClose && e.clickClose(...i))
             }))
           ])) : d("", !0),
           c("div", T, [
