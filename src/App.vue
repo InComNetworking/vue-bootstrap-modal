@@ -267,6 +267,7 @@
   </div>
 </template>
 <script>
+import ModalView from "./ModalView.vue"
 export default {
   data() {
     var self = this;
@@ -297,6 +298,9 @@ export default {
         },
       ],
     };
+  },
+  components: {
+    ModalView
   },
   watch:{
   },

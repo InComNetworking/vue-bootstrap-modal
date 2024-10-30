@@ -31,7 +31,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            @click="hide"
+            @click="clickClose"
           ></button>
         </div>
         <div class="modal-body">
@@ -45,6 +45,7 @@
             :key="index"
             :class="btn.class"
             @click="processClick(btn.click)"
+            :disabled="btn.disabled == true"
           >
             {{ btn.title }}
           </button>
@@ -65,6 +66,7 @@ export default {
   data() {
     return {
       isShow: false,
+      noEvent: false,
       customStyle: 'display: none',
       myPosition: 0,
       isBackdrop: false,
@@ -95,6 +97,9 @@ export default {
       this.classes.pop();
       setTimeout(function () {
         self.customStyle = "display: none;";
+        if(self.noEvent) {
+          return;
+        }
         self.$emit("hiddenBsModal");
         self.isBackdrop = false;
       }, 300);
@@ -114,27 +119,41 @@ export default {
   methods: {
     showPrevious: function() {
       this.hide()
-      modalWindows[this.previous].show();
+      if(modalWindows[this.previous]){
+        modalWindows[this.previous].show();
+      }
       this.previous = false;
     },
     clickHide: function (e) {
-      if(this.dataBsBackdrop && this.dataBsBackdrop == "static") {
-        this.classes.push("modal-static")
-        var self = this;
-        setTimeout(function () {
-          self.classes.pop()
-        }, 300);
-        return;
-      }
       if (this.$refs["root"] && this.$refs["root"] == e.target) {
-        this.hide();
+        if(this.dataBsBackdrop && this.dataBsBackdrop == "static") {
+          this.classes.push("modal-static")
+          var self = this;
+          setTimeout(function () {
+            self.classes.pop()
+          }, 300);
+          return;
+        }
+      
+        this.hide(false);
+        if(this.previous) {
+          this.showPrevious()
+        }
       }
     },
-    hide: function () {
+    clickClose: function(){
+      this.clickHide({ target:this.$refs['root']})
+    },
+    hide: function (noEvent) {
+      this.noEvent = noEvent
+
       if(!this.isShow) {
         return
       }
       this.isShow = false;
+      if(this.noEvent) {
+        return;
+      }
       this.$emit("hideBsModal");
     },
     show: function () {
@@ -146,7 +165,7 @@ export default {
         for(var i in modalWindows) {
           if(modalWindows[i].isShow === true) {
             this.previous = i; 
-            modalWindows[i].hide();
+            modalWindows[i].hide(true);
           }
         }
       }
