@@ -142,7 +142,10 @@ export default {
       }
     },
     clickClose: function(){
-      this.clickHide({ target:this.$refs['root']})
+      this.hide(false);
+      if(this.previous) {
+        this.showPrevious()
+      }
     },
     hide: function (noEvent) {
       this.noEvent = noEvent

@@ -66,7 +66,7 @@ const b = {
       }
     },
     clickClose: function() {
-      this.clickHide({ target: this.$refs.root });
+      this.hide(!1), this.previous && this.showPrevious();
     },
     hide: function(t) {
       this.noEvent = t, this.isShow && (this.isShow = !1, !this.noEvent && this.$emit("hideBsModal"));
@@ -104,7 +104,7 @@ const b = {
 ], g = {
   key: 1,
   class: "modal-title"
-}, T = { class: "modal-body" }, P = {
+}, P = { class: "modal-body" }, T = {
   key: 1,
   class: "modal-footer"
 }, E = ["onClick", "disabled"];
@@ -143,10 +143,10 @@ function H(t, s, o, u, a, e) {
               onClick: s[1] || (s[1] = (...i) => e.clickClose && e.clickClose(...i))
             }))
           ])) : d("", !0),
-          c("div", T, [
+          c("div", P, [
             m(t.$slots, "default")
           ]),
-          o.actions ? (l(), n("div", P, [
+          o.actions ? (l(), n("div", T, [
             (l(!0), n(f, null, p(o.actions, (i, v) => (l(), n("button", {
               type: "button",
               class: h(["btn", i.class]),
